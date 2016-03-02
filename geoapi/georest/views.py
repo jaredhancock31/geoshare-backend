@@ -110,3 +110,16 @@ def droplet_detail(request, pk):
     elif request.method == 'DELETE':
         droplet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+def droplet_query(request, lat, long):
+    """
+    get droplets within a certain range of lat and long params
+    :param request: GET
+    :param lat: latitude
+    :param long: longitude
+    :return: droplets (json) within range of lat and long
+    """
+    # TODO use filtering to retrieve the queryset according to the params
+    pass
