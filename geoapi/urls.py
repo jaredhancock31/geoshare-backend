@@ -16,16 +16,23 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from georest.views import user_list, user_detail, droplet_list, droplet_detail, droplet_query
+from georest import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 # TODO separate urls and use include import
+# Jared: as of 3/25 we have both function-based views and class-based views
 urlpatterns = [
-    url(r'^user/$', user_list, name='user_list'),
-    url(r'^user/(?P<pk>[0-9]+)/$', user_detail, name='user_detail'),
-    url(r'^droplet/$', droplet_list, name='droplet_list'),
-    url(r'^droplet/(?P<pk>[0-9]+)/$', droplet_detail, name='droplet_detail'),
-    url(r'^droplet/(?P<lat>-?\d+(?:\.\d+)?P<long>-?\d+(?:\.\d+))/$', droplet_query, name=droplet_query),
+    url(r'^user/$', views.UserList.as_view()),
+    url(r'^user/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
+    url(r'^droplet/$', views.DropletList.as_view()),
+    url(r'^droplet/(?P<pk>[0-9]+)/$', views.DropletDetail.as_view()),
     url(r'^admin/', admin.site.urls),
+    # url(r'^user/$', user_list, name='user_list'),
+    # url(r'^user/(?P<pk>[0-9]+)/$', user_detail, name='user_detail'),
+    # url(r'^droplet/$', droplet_list, name='droplet_list'),
+    # url(r'^droplet/(?P<pk>[0-9]+)/$', droplet_detail, name='droplet_detail'),
+    # url(r'^droplet/(?P<lat>-?\d+(?:\.\d+)?P<long>-?\d+(?:\.\d+))/$', droplet_query, name=droplet_query),
+
 ]
 
 
