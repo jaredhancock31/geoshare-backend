@@ -1,4 +1,7 @@
+#!/usr/bin/env python
 from rest_framework.permissions import AllowAny,BasePermission, SAFE_METHODS, IsAuthenticated
+
+__author__ = 'jared hancock'
 
 
 class IsOwnerOrReadOnly(BasePermission):

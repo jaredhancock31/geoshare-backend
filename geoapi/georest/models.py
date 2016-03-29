@@ -5,6 +5,8 @@ from pygments import highlight
 from django.db import models
 from django.contrib.auth.models import User
 
+__author__ = 'jared hancock'
+
 MAX_NAME_LEN = 25
 MAX_DATA_LEN = 200
 
@@ -28,20 +30,6 @@ class Droplet(models.Model):
 
     def __str__(self):
         return self.drop_id
-
-    # def save(self, *args, **kwargs):
-    #     """
-    #     Use the `pygments` library to create a highlighted HTML
-    #     representation of the code snippet.
-    #     """
-    #     lexer = get_lexer_by_name(self.drop_id)
-    #     linenos = self.linenos and 'table' or False
-    #     options = self.title and {'title': self.title} or {}
-    #     formatter = HtmlFormatter(style=self.style, linenos=linenos,
-    #                               full=True, **options)
-    #     self.highlighted = highlight(self.code, lexer, formatter)
-    #     super(Droplet, self).save(*args, **kwargs)
-
 
 # class AppUser(models.Model):
 #     """

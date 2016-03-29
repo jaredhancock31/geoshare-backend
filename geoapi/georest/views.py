@@ -1,9 +1,10 @@
+#!/usr/bin/env python
 
-from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import mixins
+from rest_framework.authentication import BasicAuthentication, TokenAuthentication
 from rest_framework import permissions
 from rest_framework import generics
 from django.http import Http404
@@ -13,49 +14,50 @@ from permissions import IsOwnerOrReadOnly, IsStaffOrTargetUser
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 
+__author__ = 'jared hancock'
+
 
 class DropletList(generics.ListCreateAPIView):
+    """
+    ViewSet that returns all droplets
+    """
     queryset = Droplet.objects.all()
     serializer_class = DropletSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
 
 class DropletDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    ViewSet that GET, POST, PUT, DELETE droplet(s)
+    For GET:
+        - returns entire set of droplets
+    For PUT:
+        - Must have all required fields passed in as well, or it will not be saved
+    """
     queryset = Droplet.objects.all()
     serializer_class = DropletSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
 
-class DropletMixin(object):
-    queryset = Droplet.objects.all()
-    serializer = DropletSerializer
-    permission = (IsOwnerOrReadOnly, )
+class UserDetail(generics.RetrieveUpdateAPIView):
+    """
+    Returns a User's details and associated Droplets in JSON format
+    User most be logged in before they can see this view.
 
-    def pre_save(self, obj):
-        obj.owner = self.request.user
-
-
-class UserList(generics.ListCreateAPIView):
-    queryset = User.objects.all()
+    Accepts the following GET params: token
+        - This should be passed in the form "Authorization": "token" "<token from login success here>"
+            - Note: the whitespace between 'token' and the actual token matters!
+    Accepts the following POST params:
+        - Required: token (see above in GET)
+        - Optional: email, username, other User fields
+    Returns the updated User instance
+    """
+    authentication_classes = (TokenAuthentication, )
     serializer_class = AppUserSerializer
+    permission_classes = (permissions.IsAuthenticated, )
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
-
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = AppUserSerializer
-
-#
-# class UserView(viewsets.ModelViewSet):
-#     serializer_class = AppUserSerializer
-#     model = User
-#
-#     def get_permissions(self):
-#         # allow non-authenticated user to create via Post
-#         return (permissions.AllowAny() if self.request.methd == 'POST'
-#                 else IsStaffOrTargetUser())
+    def get_object(self):
+        return self.request.user
 
 
 @api_view(['GET'])
@@ -71,3 +73,28 @@ def droplet_query(request, lat, long):
     pass
 
 
+class DropletMixin(object):
+    """
+    Don't worry about what this does right now, we aren't using it.
+    """
+    queryset = Droplet.objects.all()
+    serializer = DropletSerializer
+    permission = (IsOwnerOrReadOnly, )
+
+    def pre_save(self, obj):
+        obj.owner = self.request.user
+
+
+# class UserList(generics.ListCreateAPIView):
+#     """
+#
+#     """
+#     queryset = User.objects.all()
+#     serializer_class = AppUserSerializer
+#     permission_classes = (permissions.IsAuthenticated, )
+#
+#     def get_object(self):
+#         return self.request.user
+#
+#     # def perform_create(self, serializer):
+#     #     serializer.save(owner=self.request.user)

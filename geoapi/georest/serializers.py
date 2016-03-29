@@ -1,21 +1,23 @@
+#!/usr/bin/env python
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from models import Droplet #, AppUser
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 
+__author__ = 'jared hancock'
 
 class AppUserSerializer(serializers.ModelSerializer):
     """
-    This class will serialize User instances in the database into JSON format
+    Django User model without passwords
     """
     droplets = serializers.PrimaryKeyRelatedField(many=True, queryset=Droplet.objects.all())
 
     class Meta:
         # model = AppUser
-        model = User
-        fields = ('id', 'username', 'email', 'droplets')
-    #     write_only_fields = ('password',)
-    #     read_only_fields = ('id', 'is_staff', 'is_superuser', 'is_active', 'date_joined',)
-    #
+        model = get_user_model()
+        fields = ('username', 'email', 'droplets')
+        read_only_fields = ('email',)
 
 
 class DropletSerializer(serializers.ModelSerializer):
