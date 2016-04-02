@@ -31,6 +31,8 @@ class Droplet(models.Model):
     def __str__(self):
         return self.drop_id
 
+
+
 # class AppUser(models.Model):
 #     """
 #     This is the model for a User instance that represents a row in the User table

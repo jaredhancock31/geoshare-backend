@@ -7,15 +7,16 @@ from rest_framework.authtoken.models import Token
 
 __author__ = 'jared hancock'
 
+
 class AppUserSerializer(serializers.ModelSerializer):
     """
-    Django User model without passwords
+    Django User model with a one-to-many relation to Droplets
     """
     droplets = serializers.PrimaryKeyRelatedField(many=True, queryset=Droplet.objects.all())
 
     class Meta:
         # model = AppUser
-        model = get_user_model()
+        model = get_user_model()  # Django User model
         fields = ('username', 'email', 'droplets')
         read_only_fields = ('email',)
 

@@ -7,12 +7,14 @@ from rest_framework import mixins
 from rest_framework.authentication import BasicAuthentication, TokenAuthentication
 from rest_framework import permissions
 from rest_framework import generics
+from rest_framework import exceptions
 from django.http import Http404
 from models import Droplet #, User
 from serializers import AppUserSerializer, DropletSerializer
 from permissions import IsOwnerOrReadOnly, IsStaffOrTargetUser
 from django.contrib.auth.models import User
 from rest_framework import viewsets
+from django.views.decorators.csrf import ensure_csrf_cookie, get_token
 
 __author__ = 'jared hancock'
 
@@ -23,7 +25,7 @@ class DropletList(generics.ListCreateAPIView):
     """
     queryset = Droplet.objects.all()
     serializer_class = DropletSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
 
 class DropletDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -73,28 +75,35 @@ def droplet_query(request, lat, long):
     pass
 
 
-class DropletMixin(object):
-    """
-    Don't worry about what this does right now, we aren't using it.
-    """
-    queryset = Droplet.objects.all()
-    serializer = DropletSerializer
-    permission = (IsOwnerOrReadOnly, )
-
-    def pre_save(self, obj):
-        obj.owner = self.request.user
+@api_view(['GET'])
+@ensure_csrf_cookie
+def dummy(request):
+    return Response("large butts")
 
 
-# class UserList(generics.ListCreateAPIView):
+# @api_view(['GET', 'POST'])
+# def my_login(request):
+#     auth = (BasicAuthentication,)
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         if not username:
+#             return None
+#
+#         try:
+#             user = User.objects.get(username=username)
+#         except User.DoesNotExist:
+#             raise exceptions.AuthenticationFailed('No such user')
+#
+#         return user, None
+
+
+# class DropletMixin(object):
 #     """
-#
+#     Don't worry about what this does right now, we aren't using it.
 #     """
-#     queryset = User.objects.all()
-#     serializer_class = AppUserSerializer
-#     permission_classes = (permissions.IsAuthenticated, )
+#     queryset = Droplet.objects.all()
+#     serializer = DropletSerializer
+#     permission = (IsOwnerOrReadOnly, )
 #
-#     def get_object(self):
-#         return self.request.user
-#
-#     # def perform_create(self, serializer):
-#     #     serializer.save(owner=self.request.user)
+#     def pre_save(self, obj):
+#         obj.owner = self.request.user
