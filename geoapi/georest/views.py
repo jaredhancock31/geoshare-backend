@@ -8,6 +8,7 @@ from rest_framework.authentication import BasicAuthentication, TokenAuthenticati
 from rest_framework import permissions
 from rest_framework import generics
 from rest_framework import exceptions
+from rest_framework import status
 from django.http import Http404
 from models import Droplet #, User
 from serializers import AppUserSerializer, DropletSerializer
@@ -30,7 +31,7 @@ class DropletList(generics.ListCreateAPIView):
 
 class DropletDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    ViewSet that GET, POST, PUT, DELETE droplet(s)
+    ViewSet that GET, PUT, DELETE droplet(s)
     For GET:
         - returns entire set of droplets
     For PUT:
@@ -78,23 +79,32 @@ def droplet_query(request, lat, long):
 @api_view(['GET'])
 @ensure_csrf_cookie
 def dummy(request):
-    return Response("large butts")
+    return Response("get off my lawn", status=status.HTTP_204_NO_CONTENT)
 
 
-# @api_view(['GET', 'POST'])
-# def my_login(request):
-#     auth = (BasicAuthentication,)
-#     if request.method == 'POST':
-#         username = request.POST['username']
-#         if not username:
-#             return None
-#
-#         try:
-#             user = User.objects.get(username=username)
-#         except User.DoesNotExist:
-#             raise exceptions.AuthenticationFailed('No such user')
-#
-#         return user, None
+@api_view(['GET', 'POST'])
+@ensure_csrf_cookie
+def my_login(request):
+    """
+    testing custom auth
+    """
+
+    auth = (BasicAuthentication,)
+    if request.method == 'POST':
+        username = request.POST['username']
+        if not username:
+            return None
+
+        try:
+            user = User.objects.get(username=username)
+            serializer = AppUserSerializer(user)
+        except User.DoesNotExist:
+            raise exceptions.AuthenticationFailed('No such user')
+
+        return Response(serializer.data)
+
+    if request.method == 'GET':
+        return Response("keep the change ya filthy animal", status=status.HTTP_200_OK)
 
 
 # class DropletMixin(object):

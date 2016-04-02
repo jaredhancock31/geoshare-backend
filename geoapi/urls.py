@@ -22,6 +22,10 @@ urlpatterns = [
     url(r'^auth/', include('rest_auth.urls')),
     url(r'^auth/registration/', include('rest_auth.registration.urls')),
 
+    # django token auth
+    url(r'^token-auth/', djangoviews.obtain_auth_token),
+
+
     # url(r'^user/$', user_list, name='user_list'),
     # url(r'^user/(?P<pk>[0-9]+)/$', user_detail, name='user_detail'),
     # url(r'^droplet/$', droplet_list, name='droplet_list'),
@@ -29,7 +33,7 @@ urlpatterns = [
     # url(r'^droplet/(?P<latitude>-?\d+(?:\.\d+)?P<longitude>-?\d+(?:\.\d+))/$', droplet_query, name='droplet_query'),
     # url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
     # url(r'^api/', include(router.urls)),
-    url(r'^token-auth/', djangoviews.obtain_auth_token),
+
 
 ]
 
