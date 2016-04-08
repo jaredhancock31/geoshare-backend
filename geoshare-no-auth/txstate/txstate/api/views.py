@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.views import csrf_exempt
 from rest_framework import generics
 from .serializers import DropletSerializer
 from .models import Droplet
@@ -11,6 +12,11 @@ class DropletList(generics.ListCreateAPIView):
     """
     ViewSet that returns all droplets
     """
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(DropletList, self).dispatch(request, *args, **kwargs)
+
+    # permission_classes = ()
     queryset = Droplet.objects.all()
     serializer_class = DropletSerializer
 
@@ -45,7 +51,12 @@ class DropletQuery(generics.ListAPIView):
 
         return queryset
 
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(DropletQuery, self).dispatch(request, *args, **kwargs)
+
 
 @api_view(['GET'])
+@csrf_exempt
 def droplet_query(request, latitude, longitude):
-    pass
+    serializer_class = DropletSerializer
