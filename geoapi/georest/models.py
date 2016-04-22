@@ -11,6 +11,21 @@ MAX_NAME_LEN = 25
 MAX_DATA_LEN = 200
 
 
+# class AppUser(models.Model):
+#
+#     # user_id = models.AutoField(primary_key=True)
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     # username = models.CharField(max_length=MAX_NAME_LEN, unique=True)
+#     # email = models.EmailField(unique=True)
+#
+#
+#     def __unicode__(self):
+#         return self.user_id
+#
+#     def __str__(self):
+#         return self.user_id
+
+
 class Droplet(models.Model):
     """
     This is the model for a data drop instance that represents a row in the DDrop table
@@ -18,35 +33,15 @@ class Droplet(models.Model):
     """
 
     drop_id = models.AutoField(primary_key=True)
-    owner = models.ForeignKey('auth.User', related_name='droplets')
+    # owner = models.CharField(max_length=MAX_NAME_LEN)
+    owner = models.ForeignKey(User)
     latitude = models.FloatField()
     longitude = models.FloatField()
     data = models.TextField(max_length=MAX_DATA_LEN)
-    timestamp = models.TextField()
-    # timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    timestamp = models.TextField(max_length=MAX_DATA_LEN)
 
     def __unicode__(self):
         return self.drop_id
 
     def __str__(self):
         return self.drop_id
-
-
-
-# class AppUser(models.Model):
-#     """
-#     This is the model for a User instance that represents a row in the User table
-#     of the database
-#     """
-#
-#     user = models.OneToOneField(User)
-#     user_id = models.AutoField(primary_key=True)
-#     # name = models.CharField(max_length=MAX_NAME_LEN)
-#     # surname = models.CharField(max_length=MAX_NAME_LEN)
-#     # email = models.EmailField(unique=True)
-#
-#     def __unicode__(self):
-#         return self.email
-#
-#     def __str__(self):
-#         return self.email

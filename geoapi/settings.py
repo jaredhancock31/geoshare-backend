@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'rest_auth.registration',
+    'registration_api',
     'allauth',
     'allauth.account',
     'geoapi',
@@ -79,6 +80,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'geoapi.wsgi.application'
 
+# This setting is mandatory
+REGISTRATION_API_ACTIVATION_SUCCESS_URL = '/'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
