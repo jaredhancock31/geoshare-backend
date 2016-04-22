@@ -3,5 +3,5 @@ from __future__ import unicode_literals
 from django.apps import AppConfig
 
 
-class GeorestConfig(AppConfig):
-    name = 'georest'
+class ApiConfig(AppConfig):
+    name = 'api'
