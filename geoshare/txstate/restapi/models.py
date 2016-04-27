@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from django.contrib.auth.models import User
 
 MAX_NAME_LEN = 25
 MAX_DATA_LEN = 200
@@ -14,7 +14,8 @@ class Droplet(models.Model):
     """
 
     drop_id = models.AutoField(primary_key=True)
-    owner = models.CharField(max_length=MAX_NAME_LEN)
+    # owner = models.CharField(max_length=MAX_NAME_LEN)
+    owner = models.ForeignKey(User, )
     latitude = models.FloatField()
     longitude = models.FloatField()
     data = models.TextField(max_length=MAX_DATA_LEN)

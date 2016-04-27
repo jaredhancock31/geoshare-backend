@@ -1,24 +1,40 @@
 from django.shortcuts import render
+from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.views import csrf_exempt
-from rest_framework import generics
-from .serializers import DropletSerializer
+from rest_framework.views import APIView, csrf_exempt
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+from rest_framework import generics, viewsets
+from rest_framework.authtoken.models import Token
+
+from .serializers import DropletSerializer, UserSerializer
 from .models import Droplet
 
 
 class DropletList(generics.ListCreateAPIView):
     """
-    ViewSet that returns all droplets
+    ViewSet that returns all droplets on a GET, and allows POSTs for new droplets if a user is authenticated
     """
+
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    queryset = Droplet.objects.all()
+    serializer_class = DropletSerializer
+
+    def create(self, request, *args, **kwargs):
+        """
+        Grabs an authenticated User instance from request.user, and adds its id (primary key) to the request.data
+        dictionary. With all f
+        """
+        # print(request.user)
+        # print(request.data)
+        request.data.update({'owner': request.user.id})
+        return super(DropletList, self).create(request, *args, **kwargs)
+
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
         return super(DropletList, self).dispatch(request, *args, **kwargs)
 
-    # permission_classes = ()
-    queryset = Droplet.objects.all()
-    serializer_class = DropletSerializer
 
 
 class DropletQuery(generics.ListAPIView):
@@ -54,9 +70,3 @@ class DropletQuery(generics.ListAPIView):
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
         return super(DropletQuery, self).dispatch(request, *args, **kwargs)
-
-
-@api_view(['GET'])
-@csrf_exempt
-def droplet_query(request, latitude, longitude):
-    serializer_class = DropletSerializer
