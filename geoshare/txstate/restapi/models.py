@@ -14,12 +14,10 @@ class Droplet(models.Model):
     """
 
     drop_id = models.AutoField(primary_key=True)
-    # owner = models.CharField(max_length=MAX_NAME_LEN)
-    owner = models.ForeignKey(User, )
+    owner = models.ForeignKey(User)
     latitude = models.FloatField()
     longitude = models.FloatField()
     data = models.TextField(max_length=MAX_DATA_LEN)
-    # timestamp = models.TextField(max_length=MAX_DATA_LEN)
 
     def __unicode__(self):
         return self.drop_id

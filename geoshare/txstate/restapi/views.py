@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView, csrf_exempt
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import generics, viewsets
-from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
 
 from .serializers import DropletSerializer, UserSerializer
 from .models import Droplet
@@ -24,17 +25,15 @@ class DropletList(generics.ListCreateAPIView):
     def create(self, request, *args, **kwargs):
         """
         Grabs an authenticated User instance from request.user, and adds its id (primary key) to the request.data
-        dictionary. With all f
+        dictionary.
         """
-        # print(request.user)
-        # print(request.data)
-        request.data.update({'owner': request.user.id})
+        user = request.user
+        request.data.update({'owner': user.id})
         return super(DropletList, self).create(request, *args, **kwargs)
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
         return super(DropletList, self).dispatch(request, *args, **kwargs)
-
 
 
 class DropletQuery(generics.ListAPIView):
@@ -70,3 +69,22 @@ class DropletQuery(generics.ListAPIView):
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
         return super(DropletQuery, self).dispatch(request, *args, **kwargs)
+
+
+class Profile(generics.ListAPIView):
+    """
+    View that returns all droplets belonging to the currently authenticated user
+    """
+
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    serializer_class = DropletSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Droplet.objects.filter(owner=user.id)
+
+
+
+
+
