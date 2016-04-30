@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>restapi package &mdash; geoshare 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="geoshare 0.0.1 documentation" href="index.html" />
+    <link rel="up" title="txstate" href="modules.html" />
+    <link rel="next" title="restapi.migrations package" href="restapi.migrations.html" />
+    <link rel="prev" title="manage module" href="manage.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="restapi-package">
+<h1>restapi package<a class="headerlink" href="#restapi-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="restapi.migrations.html">restapi.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="restapi.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi.migrations.html#module-restapi.migrations.0001_initial">restapi.migrations.0001_initial module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi.migrations.html#module-restapi.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-restapi.admin">
+<span id="restapi-admin-module"></span><h2>restapi.admin module<a class="headerlink" href="#module-restapi.admin" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-restapi.apps">
+<span id="restapi-apps-module"></span><h2>restapi.apps module<a class="headerlink" href="#module-restapi.apps" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="restapi.apps.ApiConfig">
+<em class="property">class </em><code class="descclassname">restapi.apps.</code><code class="descname">ApiConfig</code><span class="sig-paren">(</span><em>app_name</em>, <em>app_module</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.apps.ApiConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.apps.config.AppConfig</span></code></p>
+<dl class="attribute">
+<dt id="restapi.apps.ApiConfig.name">
+<code class="descname">name</code><em class="property"> = u'restapi'</em><a class="headerlink" href="#restapi.apps.ApiConfig.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-restapi.models">
+<span id="restapi-models-module"></span><h2>restapi.models module<a class="headerlink" href="#module-restapi.models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="restapi.models.Droplet">
+<em class="property">class </em><code class="descclassname">restapi.models.</code><code class="descname">Droplet</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.models.Droplet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>This is the model for a Droplet instance that represents a row in the DDrop table
+of the database</p>
+<dl class="exception">
+<dt id="restapi.models.Droplet.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#restapi.models.Droplet.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="restapi.models.Droplet.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Droplet.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#restapi.models.Droplet.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="restapi.models.Droplet.objects">
+<code class="descclassname">Droplet.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#restapi.models.Droplet.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="restapi.models.Droplet.owner">
+<code class="descclassname">Droplet.</code><code class="descname">owner</code><a class="headerlink" href="#restapi.models.Droplet.owner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">child.parent</span></code> is a <code class="docutils literal"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-restapi.serializers">
+<span id="restapi-serializers-module"></span><h2>restapi.serializers module<a class="headerlink" href="#module-restapi.serializers" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="restapi.serializers.DropletSerializer">
+<em class="property">class </em><code class="descclassname">restapi.serializers.</code><code class="descname">DropletSerializer</code><span class="sig-paren">(</span><em>instance=None</em>, <em>data=&lt;class rest_framework.fields.empty&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.serializers.DropletSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.serializers.ModelSerializer</span></code></p>
+<p>Serializer for Droplet model</p>
+<dl class="class">
+<dt id="restapi.serializers.DropletSerializer.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="headerlink" href="#restapi.serializers.DropletSerializer.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="restapi.serializers.DropletSerializer.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('drop_id', 'owner', 'latitude', 'longitude', 'data')</em><a class="headerlink" href="#restapi.serializers.DropletSerializer.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="restapi.serializers.DropletSerializer.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#restapi.serializers.DropletSerializer.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">Droplet</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="restapi.serializers.UserSerializer">
+<em class="property">class </em><code class="descclassname">restapi.serializers.</code><code class="descname">UserSerializer</code><span class="sig-paren">(</span><em>instance=None</em>, <em>data=&lt;class rest_framework.fields.empty&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.serializers.UserSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.serializers.ModelSerializer</span></code></p>
+<p>Serializer for Django User model</p>
+<dl class="class">
+<dt id="restapi.serializers.UserSerializer.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="headerlink" href="#restapi.serializers.UserSerializer.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="restapi.serializers.UserSerializer.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('username', 'email', 'password', 'droplets')</em><a class="headerlink" href="#restapi.serializers.UserSerializer.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="restapi.serializers.UserSerializer.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#restapi.serializers.UserSerializer.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">User</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-restapi.tests">
+<span id="restapi-tests-module"></span><h2>restapi.tests module<a class="headerlink" href="#module-restapi.tests" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-restapi.views">
+<span id="restapi-views-module"></span><h2>restapi.views module<a class="headerlink" href="#module-restapi.views" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="restapi.views.DropletList">
+<em class="property">class </em><code class="descclassname">restapi.views.</code><code class="descname">DropletList</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.views.DropletList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.generics.ListCreateAPIView</span></code></p>
+<p>ViewSet that returns all droplets on a GET, and allows POSTs for new droplets if a user is authenticated</p>
+<dl class="attribute">
+<dt id="restapi.views.DropletList.authentication_classes">
+<code class="descname">authentication_classes</code><em class="property"> = (&lt;class 'rest_framework.authentication.TokenAuthentication'&gt;,)</em><a class="headerlink" href="#restapi.views.DropletList.authentication_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="restapi.views.DropletList.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.views.DropletList.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Grabs an authenticated User instance from request.user, and adds its id (primary key) to the request.data
+dictionary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="restapi.views.DropletList.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.views.DropletList.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overriden dispatch method with a csrf_exempt decorator</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="restapi.views.DropletList.permission_classes">
+<code class="descname">permission_classes</code><em class="property"> = (&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;,)</em><a class="headerlink" href="#restapi.views.DropletList.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="restapi.views.DropletList.queryset">
+<code class="descname">queryset</code><a class="headerlink" href="#restapi.views.DropletList.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="restapi.views.DropletList.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#restapi.views.DropletList.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">DropletSerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="restapi.views.DropletQuery">
+<em class="property">class </em><code class="descclassname">restapi.views.</code><code class="descname">DropletQuery</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.views.DropletQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.generics.ListAPIView</span></code></p>
+<p>Viewset that filters based on given latitude and longitude proximity</p>
+<dl class="method">
+<dt id="restapi.views.DropletQuery.dispatch">
+<code class="descname">dispatch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.views.DropletQuery.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="restapi.views.DropletQuery.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#restapi.views.DropletQuery.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>filter the queryset based on latitude and longitude proximity
+:return: droplets near location parameters</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="restapi.views.DropletQuery.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#restapi.views.DropletQuery.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">DropletSerializer</span></code></p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="restapi.views.DropletQuery.to_float">
+<em class="property">static </em><code class="descname">to_float</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.views.DropletQuery.to_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simply convert a string to a float, while catching ValueError exceptions
+:param n: value to be converted
+:return: float, or NoneType if ValueError exception</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="restapi.views.Profile">
+<em class="property">class </em><code class="descclassname">restapi.views.</code><code class="descname">Profile</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#restapi.views.Profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.generics.ListAPIView</span></code></p>
+<p>View that returns all droplets belonging to the currently authenticated user</p>
+<dl class="attribute">
+<dt id="restapi.views.Profile.authentication_classes">
+<code class="descname">authentication_classes</code><em class="property"> = (&lt;class 'rest_framework.authentication.TokenAuthentication'&gt;,)</em><a class="headerlink" href="#restapi.views.Profile.authentication_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="restapi.views.Profile.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#restapi.views.Profile.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="restapi.views.Profile.permission_classes">
+<code class="descname">permission_classes</code><em class="property"> = (&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;,)</em><a class="headerlink" href="#restapi.views.Profile.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="restapi.views.Profile.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#restapi.views.Profile.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">DropletSerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-restapi">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-restapi" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">restapi package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-restapi.admin">restapi.admin module</a></li>
+<li><a class="reference internal" href="#module-restapi.apps">restapi.apps module</a></li>
+<li><a class="reference internal" href="#module-restapi.models">restapi.models module</a></li>
+<li><a class="reference internal" href="#module-restapi.serializers">restapi.serializers module</a></li>
+<li><a class="reference internal" href="#module-restapi.tests">restapi.tests module</a></li>
+<li><a class="reference internal" href="#module-restapi.views">restapi.views module</a></li>
+<li><a class="reference internal" href="#module-restapi">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">txstate</a><ul>
+      <li>Previous: <a href="manage.html" title="previous chapter">manage module</a></li>
+      <li>Next: <a href="restapi.migrations.html" title="next chapter">restapi.migrations package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/restapi.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Jared Hancock.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/restapi.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -9,7 +9,7 @@ MAX_DATA_LEN = 200
 
 class Droplet(models.Model):
     """
-    This is the model for a data drop instance that represents a row in the DDrop table
+    This is the model for a Droplet instance that represents a row in the DDrop table
     of the database
     """
 

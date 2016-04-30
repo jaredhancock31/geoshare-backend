@@ -5,6 +5,9 @@ from django.contrib.auth import get_user_model
 
 
 class DropletSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Droplet model
+    """
 
     class Meta:
         model = Droplet
@@ -12,6 +15,9 @@ class DropletSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Django User model
+    """
 
     droplets = DropletSerializer(many=True, read_only=True)
 

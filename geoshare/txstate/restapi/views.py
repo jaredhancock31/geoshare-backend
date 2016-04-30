@@ -7,7 +7,6 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import generics, viewsets
 from rest_framework.response import Response
-
 from .serializers import DropletSerializer, UserSerializer
 from .models import Droplet
 
@@ -33,6 +32,9 @@ class DropletList(generics.ListCreateAPIView):
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
+        """
+        Overriden dispatch method with a csrf_exempt decorator
+        """
         return super(DropletList, self).dispatch(request, *args, **kwargs)
 
 
@@ -45,12 +47,21 @@ class DropletQuery(generics.ListAPIView):
 
     @staticmethod
     def to_float(n):
+        """
+        Simply convert a string to a float, while catching ValueError exceptions
+        :param n: value to be converted
+        :return: float, or NoneType if ValueError exception
+        """
         try:
             return float(n)
         except ValueError:
             return None
 
     def get_queryset(self):
+        """
+        filter the queryset based on latitude and longitude proximity
+        :return: droplets near location parameters
+        """
         queryset = Droplet.objects.all()
         latitude = self.request.query_params.get('latitude', None)
         longitude = self.request.query_params.get('longitude', None)
